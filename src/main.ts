@@ -19,12 +19,14 @@ console.log(dvdEl.style.cssText)
 
 body.append(dvdEl)
 
-let down = true
-let right = true
-
 function tick() {
 	requestAnimationFrame(tick)
-	if (dvdEl.y + dvdEl.height / 2 < window.innerHeight) {
+	/* Works */
+	// if (dvdEl.y + dvdEl.height / 2 < window.innerHeight) {
+	// 	dvdEl.style.top = `${parseInt(dvdEl.style.top) + 1}px`
+	// }
+	/* Doesnt work, overflows bottom of inner */
+	if (detectEdge(dvdEl.y, dvdEl.height, window.innerHeight)) {
 		dvdEl.style.top = `${parseInt(dvdEl.style.top) + 1}px`
 	}
 }
