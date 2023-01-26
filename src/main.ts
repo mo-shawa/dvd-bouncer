@@ -19,20 +19,28 @@ console.log(dvdEl.style.cssText)
 
 body.append(dvdEl)
 
+let down = true
+let right = true
+
 function tick() {
 	requestAnimationFrame(tick)
-
-	dvdEl.style.top = `${parseInt(dvdEl.style.top) + 1}`
+	if (dvdEl.y + dvdEl.height / 2 < window.innerHeight) {
+		dvdEl.style.top = `${parseInt(dvdEl.style.top) + 1}px`
+	}
 }
 
 tick()
 // dvdEl.style.right = `-${dvdEl.x + dvdEl.width / 2}%`
 dvdEl.onload = () => {
-	console.log(dvdEl.x, dvdEl.width)
+	console.log(dvdEl.height)
 	console.log(dvdEl.x + dvdEl.width, window.innerWidth)
 	console.log(dvdEl.x - dvdEl.width - window.innerWidth)
 }
 
-function detectEdge() {
-	const x = dvdEl.x
+function detectEdge(
+	objectDimension: number,
+	objectPosition: number,
+	containerDimension: number
+) {
+	return objectPosition + objectDimension / 2 < containerDimension
 }
